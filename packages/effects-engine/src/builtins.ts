@@ -18,6 +18,7 @@ export const EFFECT_SEPIA = "core.color.sepia";
 export const EFFECT_GRAYSCALE = "core.color.grayscale";
 export const EFFECT_INVERT = "core.color.invert";
 export const EFFECT_HUE = "core.color.hue";
+export const EFFECT_PIXELATE = "core.stylize.pixelate";
 
 /** An "amount" range param (0..1), shared by the blend-strength colour effects. */
 const amountParam = {
@@ -60,6 +61,22 @@ export const BUILTIN_EFFECTS: EffectDefinition[] = [
         min: 0,
         max: 1,
         step: 0.01,
+      },
+    ],
+  },
+  {
+    effectId: EFFECT_PIXELATE,
+    name: "Pixelate",
+    category: "Stylize",
+    params: [
+      {
+        key: "size",
+        label: "Size",
+        type: "range",
+        defaultValue: 10,
+        min: 1,
+        max: 100,
+        step: 1,
       },
     ],
   },

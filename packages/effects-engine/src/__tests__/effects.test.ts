@@ -67,6 +67,12 @@ describe("shared registry", () => {
     expect(defaultEffectParams(chroma!).color).toEqual({ type: "static", value: "#00ff00" });
   });
 
+  it("registers pixelate with a size parameter", () => {
+    const pixelate = effectRegistry.get("core.stylize.pixelate");
+    expect(pixelate?.params.map((p) => p.key)).toEqual(["size"]);
+    expect(defaultEffectParams(pixelate!).size).toEqual({ type: "static", value: 10 });
+  });
+
   it("groups the colour effects under one category", () => {
     const color = effectRegistry.byCategory().get("Color");
     expect(color?.map((d) => d.effectId)).toEqual([
