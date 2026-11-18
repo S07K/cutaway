@@ -18,6 +18,7 @@ export const EFFECT_SEPIA = "core.color.sepia";
 export const EFFECT_GRAYSCALE = "core.color.grayscale";
 export const EFFECT_INVERT = "core.color.invert";
 export const EFFECT_HUE = "core.color.hue";
+export const EFFECT_SHARPEN = "core.stylize.sharpen";
 
 /** An "amount" range param (0..1), shared by the blend-strength colour effects. */
 const amountParam = {
@@ -62,6 +63,12 @@ export const BUILTIN_EFFECTS: EffectDefinition[] = [
         step: 0.01,
       },
     ],
+  },
+  {
+    effectId: EFFECT_SHARPEN,
+    name: "Sharpen",
+    category: "Stylize",
+    params: [{ ...amountParam, defaultValue: 0.5 }],
   },
   {
     effectId: EFFECT_CHROMA,
