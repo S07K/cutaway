@@ -25,6 +25,7 @@ export type PresetValue =
   | { mode: "absolute"; scalar: number }
   | { mode: "multiply"; scalar: number }
   | { mode: "offset"; vec: { x: number; y: number } }
+  | { mode: "offset-scalar"; scalar: number }
   | { mode: "absolute-vec"; vec: { x: number; y: number } };
 
 export interface PresetKeyframe {
@@ -159,6 +160,98 @@ export const ANIMATION_PRESETS: AnimationPreset[] = [
         keyframes: [
           { at: 0.4, value: { mode: "absolute", scalar: 1 }, easing: easeInOut },
           { at: 1, value: { mode: "absolute", scalar: 0 }, easing: linear },
+        ],
+      },
+    ],
+  },
+  {
+    id: "core.zoom-in",
+    name: "Zoom In",
+    category: "in",
+    durationFrames: 18,
+    channels: [
+      {
+        propertyId: "transform.scale",
+        keyframes: [
+          { at: 0, value: { mode: "multiply", scalar: 0.5 }, easing: easeOut },
+          { at: 1, value: { mode: "multiply", scalar: 1 }, easing: linear },
+        ],
+      },
+      {
+        propertyId: "appearance.opacity",
+        keyframes: [
+          { at: 0, value: { mode: "absolute", scalar: 0 }, easing: easeOut },
+          { at: 0.6, value: { mode: "absolute", scalar: 1 }, easing: linear },
+        ],
+      },
+    ],
+  },
+  {
+    id: "core.zoom-out",
+    name: "Zoom Out",
+    category: "out",
+    durationFrames: 18,
+    channels: [
+      {
+        propertyId: "transform.scale",
+        keyframes: [
+          { at: 0, value: { mode: "multiply", scalar: 1 }, easing: easeInOut },
+          { at: 1, value: { mode: "multiply", scalar: 0.5 }, easing: linear },
+        ],
+      },
+      {
+        propertyId: "appearance.opacity",
+        keyframes: [
+          { at: 0.4, value: { mode: "absolute", scalar: 1 }, easing: easeInOut },
+          { at: 1, value: { mode: "absolute", scalar: 0 }, easing: linear },
+        ],
+      },
+    ],
+  },
+  {
+    id: "core.rotate-in",
+    name: "Rotate In",
+    category: "in",
+    durationFrames: 20,
+    channels: [
+      {
+        // Offset from the resting angle (degrees), so a clip that is already
+        // rotated settles back at its own angle.
+        propertyId: "transform.rotation",
+        keyframes: [
+          { at: 0, value: { mode: "offset-scalar", scalar: -90 }, easing: easeOut },
+          { at: 1, value: { mode: "offset-scalar", scalar: 0 }, easing: linear },
+        ],
+      },
+      {
+        propertyId: "appearance.opacity",
+        keyframes: [
+          { at: 0, value: { mode: "absolute", scalar: 0 }, easing: easeOut },
+          { at: 0.5, value: { mode: "absolute", scalar: 1 }, easing: linear },
+        ],
+      },
+    ],
+  },
+  {
+    id: "core.bounce-in",
+    name: "Bounce In",
+    category: "in",
+    durationFrames: 24,
+    channels: [
+      {
+        // Drop in from above; the spring easing overshoots the resting
+        // position and settles, which reads as a bounce.
+        propertyId: "transform.position",
+        keyframes: [
+          { at: 0, value: { mode: "offset", vec: { x: 0, y: -360 } }, easing: spring },
+          { at: 1, value: { mode: "offset", vec: { x: 0, y: 0 } }, easing: linear },
+        ],
+      },
+      {
+        propertyId: "appearance.opacity",
+        keyframes: [
+          { at: 0, value: { mode: "absolute", scalar: 0 }, easing: easeOut },
+          { at: 0.25, value: { mode: "absolute", scalar: 1 }, easing: linear },
         ],
       },
     ],
