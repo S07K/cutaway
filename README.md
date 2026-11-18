@@ -1,7 +1,49 @@
+<div align="center">
+
 # Cutaway
 
 An open-source, local-first, AI-ready video editor for creators — running
 entirely in your browser.
+
+<!-- Project status -->
+
+[![CI](https://github.com/S07K/cutaway/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/S07K/cutaway/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/github/license/S07K/cutaway?color=blue)](LICENSE)
+[![Live demo](https://img.shields.io/badge/demo-cutaway--one.vercel.app-black?logo=vercel)](https://cutaway-one.vercel.app)
+[![Status](https://img.shields.io/badge/status-active%20development-orange)](#roadmap)
+[![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+
+<!-- Community -->
+
+[![GitHub stars](https://img.shields.io/github/stars/S07K/cutaway?style=flat&logo=github)](https://github.com/S07K/cutaway/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/S07K/cutaway?style=flat&logo=github)](https://github.com/S07K/cutaway/network/members)
+[![Open issues](https://img.shields.io/github/issues/S07K/cutaway)](https://github.com/S07K/cutaway/issues)
+[![Open PRs](https://img.shields.io/github/issues-pr/S07K/cutaway)](https://github.com/S07K/cutaway/pulls)
+[![Contributors](https://img.shields.io/github/contributors/S07K/cutaway)](https://github.com/S07K/cutaway/graphs/contributors)
+[![Last commit](https://img.shields.io/github/last-commit/S07K/cutaway)](https://github.com/S07K/cutaway/commits/main)
+[![Repo size](https://img.shields.io/github/repo-size/S07K/cutaway)](https://github.com/S07K/cutaway)
+
+<!-- Stack -->
+
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org)
+[![Next.js](https://img.shields.io/badge/Next.js-16-000000?logo=nextdotjs&logoColor=white)](https://nextjs.org)
+[![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)](https://react.dev)
+[![PixiJS](https://img.shields.io/badge/PixiJS-8-E72264?logo=pixijs&logoColor=white)](https://pixijs.com)
+[![WebCodecs](https://img.shields.io/badge/WebCodecs-encode%20%2B%20decode-4285F4?logo=googlechrome&logoColor=white)](https://developer.mozilla.org/docs/Web/API/WebCodecs_API)
+[![Node](https://img.shields.io/badge/node-%3E%3D20-339933?logo=nodedotjs&logoColor=white)](package.json)
+[![pnpm](https://img.shields.io/badge/pnpm-10-F69220?logo=pnpm&logoColor=white)](https://pnpm.io)
+[![Turborepo](https://img.shields.io/badge/Turborepo-monorepo-EF4444?logo=turborepo&logoColor=white)](https://turbo.build)
+[![Tested with Vitest](https://img.shields.io/badge/tested%20with-Vitest-6E9F18?logo=vitest&logoColor=white)](https://vitest.dev)
+[![Code style: Prettier](https://img.shields.io/badge/code%20style-prettier-ff69b4?logo=prettier&logoColor=white)](https://prettier.io)
+
+<!-- Principles -->
+
+![Local-first](https://img.shields.io/badge/local--first-no%20cloud-success)
+![No account](https://img.shields.io/badge/account-not%20required-success)
+![No API keys](https://img.shields.io/badge/API%20keys-not%20required-success)
+![On-device AI](https://img.shields.io/badge/AI-on--device%20Whisper-8A2BE2)
+
+</div>
 
 Not a Premiere clone. The goal is the simplicity of CapCut, the motion of After
 Effects, the UX of Figma, and the openness of Blender.
@@ -149,4 +191,4 @@ Contributing guide: [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
 ## License
 
-MIT
+[MIT](LICENSE)
