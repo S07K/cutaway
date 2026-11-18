@@ -70,6 +70,9 @@ pnpm dev
 Open <http://localhost:3000> and start editing. No account. No cloud. No API
 keys. Your footage never leaves your machine.
 
+New to the editor? Read [Getting started](docs/getting-started.md) and
+[Editing basics](docs/editing-basics.md).
+
 ## What it does
 
 - **Multi-track timeline** — layer video/image clips (backgrounds, overlays,
