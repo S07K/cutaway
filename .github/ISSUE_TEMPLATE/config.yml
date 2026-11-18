@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Questions & ideas
+    url: https://github.com/S07K/cutaway/discussions
+    about: Ask questions and discuss ideas before opening an issue.
+  - name: Security vulnerability
+    url: https://github.com/S07K/cutaway/security/advisories/new
+    about: Please report security issues privately.

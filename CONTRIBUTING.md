@@ -8,6 +8,22 @@ Read [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) too — it explains _why_ th
 code is shaped the way it is, and most of its rules exist to avoid a specific,
 known failure mode.
 
+## Finding something to work on
+
+- [`good first issue`](https://github.com/S07K/cutaway/labels/good%20first%20issue):
+  small and self-contained. Most follow an existing pattern.
+- [`help wanted`](https://github.com/S07K/cutaway/labels/help%20wanted):
+  bigger pieces we'd love help with.
+- `area: *` labels group issues by part of the codebase, and `difficulty: *`
+  labels show the expected size.
+- Issues labelled `needs design` need an agreed approach first, so comment
+  before writing code.
+
+Comment on an issue to claim it so nobody duplicates your work. If you haven't
+opened a PR within about two weeks, it's fair game again. For an idea that has no
+issue yet, open a [discussion](https://github.com/S07K/cutaway/discussions) or a
+feature request first.
+
 ## Setup
 
 Requirements: **Node 20+** and **pnpm 10+**.
@@ -121,4 +137,5 @@ Most features have a data-shaped entry point. Prefer it.
    (including the browser check for anything visual). CI runs typecheck, test,
    lint, format, and build on every PR.
 
-By contributing you agree your work is licensed under the project's MIT license.
+Everyone taking part is expected to follow the
+[Code of Conduct](CODE_OF_CONDUCT.md). By contributing you agree your work is licensed under the project's MIT license.
