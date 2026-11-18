@@ -22,8 +22,10 @@ import {
   EFFECT_INVERT,
   EFFECT_NOISE,
   EFFECT_SEPIA,
+  EFFECT_VIGNETTE,
 } from "@cutaway/effects-engine";
 import { ChromaKeyFilter } from "./ChromaKeyFilter";
+import { VignetteFilter } from "./VignetteFilter";
 import type { ResolvedMask } from "@cutaway/mask-engine";
 import type { Id, MediaAsset } from "@cutaway/types";
 import { MediaTextureCache } from "./MediaTextureCache";
@@ -349,6 +351,8 @@ export class PixiSceneRenderer {
         return new NoiseFilter();
       case EFFECT_CHROMA:
         return new ChromaKeyFilter();
+      case EFFECT_VIGNETTE:
+        return new VignetteFilter();
       // Sepia, grayscale, invert, and hue are all one colour matrix; the update
       // step composes the right one from the effect id.
       case EFFECT_SEPIA:
@@ -371,6 +375,10 @@ export class PixiSceneRenderer {
       filter.keyColor = hexToRgb(String(effect.params.color ?? "#00ff00"));
       filter.similarity = Number(effect.params.similarity ?? 0.4);
       filter.smoothness = Number(effect.params.smoothness ?? 0.1);
+    } else if (filter instanceof VignetteFilter) {
+      filter.amount = Number(effect.params.amount ?? 0.5);
+      filter.radius = Number(effect.params.radius ?? 0.5);
+      filter.softness = Number(effect.params.softness ?? 0.5);
     } else if (filter instanceof ColorMatrixFilter) {
       // Rebuild from identity each frame so the matrix is absolute; `alpha`
       // blends the effect with the original, driving the Amount slider.
