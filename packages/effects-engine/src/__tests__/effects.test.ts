@@ -67,6 +67,11 @@ describe("shared registry", () => {
     expect(defaultEffectParams(chroma!).color).toEqual({ type: "static", value: "#00ff00" });
   });
 
+  it("registers vignette with amount, radius, and softness", () => {
+    const vignette = effectRegistry.get("core.stylize.vignette");
+    expect(vignette?.params.map((p) => p.key)).toEqual(["amount", "radius", "softness"]);
+  });
+
   it("groups the colour effects under one category", () => {
     const color = effectRegistry.byCategory().get("Color");
     expect(color?.map((d) => d.effectId)).toEqual([

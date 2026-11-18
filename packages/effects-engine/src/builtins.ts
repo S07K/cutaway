@@ -18,6 +18,7 @@ export const EFFECT_SEPIA = "core.color.sepia";
 export const EFFECT_GRAYSCALE = "core.color.grayscale";
 export const EFFECT_INVERT = "core.color.invert";
 export const EFFECT_HUE = "core.color.hue";
+export const EFFECT_VIGNETTE = "core.stylize.vignette";
 
 /** An "amount" range param (0..1), shared by the blend-strength colour effects. */
 const amountParam = {
@@ -57,6 +58,32 @@ export const BUILTIN_EFFECTS: EffectDefinition[] = [
         label: "Amount",
         type: "range",
         defaultValue: 0.3,
+        min: 0,
+        max: 1,
+        step: 0.01,
+      },
+    ],
+  },
+  {
+    effectId: EFFECT_VIGNETTE,
+    name: "Vignette",
+    category: "Stylize",
+    params: [
+      { ...amountParam, defaultValue: 0.5 },
+      {
+        key: "radius",
+        label: "Radius",
+        type: "range",
+        defaultValue: 0.5,
+        min: 0,
+        max: 1,
+        step: 0.01,
+      },
+      {
+        key: "softness",
+        label: "Softness",
+        type: "range",
+        defaultValue: 0.5,
         min: 0,
         max: 1,
         step: 0.01,
