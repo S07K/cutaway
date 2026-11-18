@@ -72,6 +72,9 @@ function resolvePresetValue(value: PresetValue, resting: unknown): unknown {
       // to the resting value rather than producing a nonsense number.
       return resting;
 
+    case "offset-scalar":
+      return typeof resting === "number" ? resting + value.scalar : resting;
+
     default:
       return resting;
   }
