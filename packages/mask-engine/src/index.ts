@@ -8,3 +8,4 @@
 
 export * from "./evaluate";
 export * from "./factory";
+export * from "./space";
