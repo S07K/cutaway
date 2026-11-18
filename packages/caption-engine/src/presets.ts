@@ -93,6 +93,58 @@ export const CAPTION_PRESETS: CaptionPreset[] = [
     animationId: "core.captions.fade",
     positionY: 0.85,
   },
+  {
+    id: "core.captions.lower-third",
+    name: "Lower Third",
+    fontFamily: "Inter",
+    fontSize: 44,
+    fontWeight: 500,
+    uppercase: false,
+    color: "#ffffff",
+    activeWordColor: "#ffffff",
+    stroke: { enabled: false, color: "#000000", width: 0 },
+    // A soft shadow keeps the small, plain text legible on any footage.
+    shadow: { enabled: true, color: "#000000", offsetY: 1, blur: 6 },
+    // A quiet bar behind the text near the bottom edge; no per-word highlight.
+    background: { enabled: true, color: "#000000", padding: 14, cornerRadius: 4 },
+    wordsPerBlock: 6,
+    animationId: "core.captions.fade",
+    positionY: 0.9,
+  },
+  {
+    id: "core.captions.meme",
+    name: "Meme",
+    fontFamily: "Impact",
+    fontSize: 88,
+    fontWeight: 900,
+    uppercase: true,
+    color: "#ffffff",
+    activeWordColor: "#ffffff",
+    // The classic white-on-thick-black-outline look, no shadow.
+    stroke: { enabled: true, color: "#000000", width: 14 },
+    shadow: { enabled: false, color: "#000000", offsetY: 0, blur: 0 },
+    background: { enabled: false, color: "#000000", padding: 0, cornerRadius: 0 },
+    wordsPerBlock: 3,
+    animationId: "core.captions.pop",
+    positionY: 0.8,
+  },
+  {
+    id: "core.captions.neon",
+    name: "Neon",
+    fontFamily: "Inter",
+    fontSize: 68,
+    fontWeight: 700,
+    uppercase: false,
+    color: "#ffffff",
+    activeWordColor: "#ff4df0",
+    stroke: { enabled: true, color: "#ff4df0", width: 3 },
+    // A zero-offset, wide, coloured shadow reads as a glow.
+    shadow: { enabled: true, color: "#ff4df0", offsetY: 0, blur: 16 },
+    background: { enabled: false, color: "#000000", padding: 0, cornerRadius: 0 },
+    wordsPerBlock: 3,
+    animationId: "core.captions.fade",
+    positionY: 0.78,
+  },
 ];
 
 export const DEFAULT_CAPTION_PRESET_ID = "core.captions.tiktok";

@@ -224,6 +224,14 @@ describe("caption presets", () => {
     expect(names).toContain("MrBeast");
   });
 
+  it("ships the lower-third, meme, and neon styles with unique ids", () => {
+    const ids = CAPTION_PRESETS.map((p) => p.id);
+    expect(ids).toContain("core.captions.lower-third");
+    expect(ids).toContain("core.captions.meme");
+    expect(ids).toContain("core.captions.neon");
+    expect(new Set(ids).size).toBe(ids.length);
+  });
+
   it("gives Hormozi one word per block", () => {
     expect(getCaptionPreset("core.captions.hormozi").wordsPerBlock).toBe(1);
   });
