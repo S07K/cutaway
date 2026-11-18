@@ -3,6 +3,8 @@
 import { useCallback } from "react";
 import type { Clip, EllipseMaskShape, Mask, RectangleMaskShape, Vec2 } from "@cutaway/types";
 import { evaluate, setValueAt } from "@cutaway/animation-engine";
+import { maskLocalToScreen, screenDeltaToMaskLocal } from "@cutaway/mask-engine";
+import type { MaskSpace } from "@cutaway/mask-engine";
 import { useShallow } from "zustand/react/shallow";
 import { useEditorStore } from "@/state/editorStore";
 
@@ -14,10 +16,10 @@ import { useEditorStore } from "@/state/editorStore";
  * space; the inverse converts a pixel drag back into mask units.
  *
  * Coordinate assumptions match the compositor (3.5.2): mask-local (0,0) is the
- * content centre (default 0.5 anchor), and mask units are scaled by the clip's
- * scale, since the mask graphic is a child of the scaled content. Rotation is
- * not yet reflected in the handles — a documented limitation until the pen tool
- * lands.
+ * content centre (default 0.5 anchor), and mask units are scaled and rotated by
+ * the clip's scale and rotation (about its anchor), since the mask graphic is a
+ * child of the transformed content. Skew is not yet reflected in the handles —
+ * a known limitation.
  *
  * Scope: move + resize for rectangle and ellipse. Pen-path vertex editing is a
  * further increment.
@@ -52,17 +54,15 @@ export function MaskOverlay({ width, height, resolution }: MaskOverlayProps) {
   const position = evaluate(clip.transform.position, playhead) as Vec2;
   const clipScale = evaluate(clip.transform.scale, playhead) as Vec2;
 
-  /** Mask-local point → screen pixels within the stage. */
-  const toScreen = (local: Vec2): Vec2 => ({
-    x: width / 2 + (position.x + local.x * clipScale.x) * previewScale,
-    y: height / 2 + (position.y + local.y * clipScale.y) * previewScale,
-  });
+  const rotation = evaluate(clip.transform.rotation, playhead) as number;
+  const space: MaskSpace = { position, scale: clipScale, rotation, width, height, previewScale };
 
-  /** Screen delta → mask-local delta (inverse of the scale chain). */
-  const toLocalDelta = (dxScreen: number, dyScreen: number): Vec2 => ({
-    x: dxScreen / (previewScale * (clipScale.x || 1)),
-    y: dyScreen / (previewScale * (clipScale.y || 1)),
-  });
+  /** Mask-local point → screen pixels within the stage. */
+  const toScreen = (local: Vec2): Vec2 => maskLocalToScreen(space, local);
+
+  /** Screen delta → mask-local delta (inverse of the scale/rotate chain). */
+  const toLocalDelta = (dxScreen: number, dyScreen: number): Vec2 =>
+    screenDeltaToMaskLocal(space, { x: dxScreen, y: dyScreen });
 
   return (
     <svg
@@ -199,17 +199,16 @@ function RectangleHandles({
   const size = evaluate(shape.size, playhead) as Vec2;
 
   const topLeft = toScreen({ x: center.x - size.x / 2, y: center.y - size.y / 2 });
+  const topRight = toScreen({ x: center.x + size.x / 2, y: center.y - size.y / 2 });
+  const bottomLeft = toScreen({ x: center.x - size.x / 2, y: center.y + size.y / 2 });
   const bottomRight = toScreen({ x: center.x + size.x / 2, y: center.y + size.y / 2 });
   const centerScreen = toScreen(center);
   const cornerScreen = bottomRight;
 
   return (
     <g>
-      <rect
-        x={topLeft.x}
-        y={topLeft.y}
-        width={bottomRight.x - topLeft.x}
-        height={bottomRight.y - topLeft.y}
+      <polygon
+        points={[topLeft, topRight, bottomRight, bottomLeft].map((p) => `${p.x},${p.y}`).join(" ")}
         fill="none"
         stroke="var(--color-accent)"
         strokeWidth={1}
@@ -266,9 +265,10 @@ function EllipseHandles({
   const edgeScreen = toScreen({ x: center.x + radii.x, y: center.y });
   const bottomScreen = toScreen({ x: center.x, y: center.y + radii.y });
 
-  // Screen radii for the outline; abs guards against negative scale.
-  const rx = Math.abs(edgeScreen.x - centerScreen.x);
-  const ry = Math.abs(bottomScreen.y - centerScreen.y);
+  // Screen radii and tilt for the outline; lengths are sign-free, so flips are fine.
+  const rx = Math.hypot(edgeScreen.x - centerScreen.x, edgeScreen.y - centerScreen.y);
+  const ry = Math.hypot(bottomScreen.x - centerScreen.x, bottomScreen.y - centerScreen.y);
+  const tilt = Math.atan2(edgeScreen.y - centerScreen.y, edgeScreen.x - centerScreen.x);
 
   return (
     <g>
@@ -277,6 +277,7 @@ function EllipseHandles({
         cy={centerScreen.y}
         rx={rx}
         ry={ry}
+        transform={`rotate(${(tilt * 180) / Math.PI} ${centerScreen.x} ${centerScreen.y})`}
         fill="none"
         stroke="var(--color-accent)"
         strokeWidth={1}
