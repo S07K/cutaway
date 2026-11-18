@@ -67,6 +67,12 @@ describe("shared registry", () => {
     expect(defaultEffectParams(chroma!).color).toEqual({ type: "static", value: "#00ff00" });
   });
 
+  it("registers sharpen with an amount parameter", () => {
+    const sharpen = effectRegistry.get("core.stylize.sharpen");
+    expect(sharpen?.params.map((p) => p.key)).toEqual(["amount"]);
+    expect(defaultEffectParams(sharpen!).amount).toEqual({ type: "static", value: 0.5 });
+  });
+
   it("groups the colour effects under one category", () => {
     const color = effectRegistry.byCategory().get("Color");
     expect(color?.map((d) => d.effectId)).toEqual([
