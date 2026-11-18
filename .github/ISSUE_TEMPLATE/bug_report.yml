@@ -1,0 +1,45 @@
+name: Bug report
+description: Something in the editor doesn't work as expected
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for reporting! Please search existing issues first.
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What did you do, what did you expect, and what happened instead?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Import a 1080p MP4
+        2. Split at 00:03
+        3. Export as WebM
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and OS
+      placeholder: Chrome 131 on macOS 15
+    validations:
+      required: true
+  - type: dropdown
+    id: where
+    attributes:
+      label: Where
+      options:
+        - Live demo (cutaway-one.vercel.app)
+        - Local dev (pnpm dev)
+    validations:
+      required: true
+  - type: textarea
+    id: extra
+    attributes:
+      label: Screenshots, console errors, or a sample file
+      description: Console errors are especially useful for preview and export bugs.

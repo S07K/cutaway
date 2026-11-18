@@ -10,8 +10,9 @@ entirely in your browser.
 [![CI](https://github.com/S07K/cutaway/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/S07K/cutaway/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/github/license/S07K/cutaway?color=blue)](LICENSE)
 [![Live demo](https://img.shields.io/badge/demo-cutaway--one.vercel.app-black?logo=vercel)](https://cutaway-one.vercel.app)
-[![Status](https://img.shields.io/badge/status-active%20development-orange)](#roadmap)
+[![Status](https://img.shields.io/badge/status-active%20development-orange)](https://github.com/S07K/cutaway/issues)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+[![Good first issues](https://img.shields.io/github/issues/S07K/cutaway/good%20first%20issue?label=good%20first%20issues&color=7057ff)](https://github.com/S07K/cutaway/labels/good%20first%20issue)
 
 <!-- Community -->
 
@@ -51,8 +52,8 @@ Effects, the UX of Figma, and the openness of Blender.
 > **Status: in active development.** The full editing loop works — import,
 > multi-track timeline, WebGL preview, playback, undo/redo, masking, captions,
 > **on-device Whisper transcription**, color, effects, chroma key, transitions,
-> and **frame-exact export to MP4/WebM with audio**. What's next is the plugin
-> SDK. See [Roadmap](#roadmap).
+> and **frame-exact export to MP4/WebM with audio**. See
+> [open issues](https://github.com/S07K/cutaway/issues) for what's next.
 
 ## Try it
 
@@ -143,22 +144,24 @@ Next.js · React · TypeScript · Tailwind · Zustand · PixiJS (WebGL) · WebCo
 with `mp4-muxer` / `webm-muxer` · IndexedDB · pnpm workspaces · Turborepo ·
 Vitest
 
-## Roadmap
+## Contributing
 
-- [x] **Phase 1** — Monorepo, design system, docking layout, canvas timeline, media import
-- [x] **Phase 2** — Preview renderer, project save, playback, undo/redo
-- [x] **Phase 3** — Animation engine, keyframes, masking
-- [x] **Phase 4** — Captions (typed + styled + on-timeline), provider interface
-- [x] **Phase 5** — Color grading, aspect ratios, effects, transitions
-- [x] **Phase 6** — Export engine (WebCodecs + muxers, video + audio + range)
-- [x] **Phase 7** — On-device Whisper transcription (transformers.js, WebGPU/WASM)
-- [x] **Phase 8** — Frame-exact export (WebCodecs decoding, not `<video>` seeking)
-- [x] **Phase 9** — Usability pass: shortcut reference, guided empty states, no dead controls
+Cutaway is built in the open, and contributions of any size are welcome: code,
+docs, testing on other browsers, bug reports, and design feedback.
 
-Next up:
+- **New here?** Pick a
+  [`good first issue`](https://github.com/S07K/cutaway/labels/good%20first%20issue).
+  Most of them follow an existing pattern (a new effect, caption style, or
+  animation preset) and fit in one small PR.
+- **Want something bigger?** Browse
+  [`help wanted`](https://github.com/S07K/cutaway/labels/help%20wanted) or
+  filter by area (`area: preview`, `area: masks`, `area: export`, …).
+- **Have an idea or question?** Start a
+  [discussion](https://github.com/S07K/cutaway/discussions).
 
-- [ ] The `plugin-sdk` package — a frozen, versioned re-export for third parties
-- [ ] More effects and transitions; documentation and performance passes
+Comment on an issue to claim it, then read [`CONTRIBUTING.md`](CONTRIBUTING.md)
+for setup and the few rules that matter. Please follow the
+[Code of Conduct](CODE_OF_CONDUCT.md).
 
 ## Development
 
@@ -170,8 +173,6 @@ pnpm lint        # lint
 pnpm format      # format (run before committing)
 pnpm build       # production build
 ```
-
-Contributing guide: [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
 ### Shortcuts
 
